@@ -1,0 +1,35 @@
+@model University.Models.Student
+
+@{
+    ViewData["Title"] = "Student Details";
+}
+
+<h2>Student Details</h2>
+
+<div>
+    <h4>@Model.FirstMidName @Model.LastName</h4>
+    <p>Enrollment Date: @Model.EnrollmentDate.ToShortDateString()</p>
+</div>
+
+<h3>Enrollments</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Course Title</th>
+            <th>Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var enrollment in Model.Enrollments)
+        {
+            <tr>
+                <td>@enrollment.Course.Title</td>
+                <td>@(enrollment.Grade?.ToString() ?? "N/A")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>
